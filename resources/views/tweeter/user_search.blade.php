@@ -2,7 +2,11 @@
 
 @section('title','tweeter')
 
+@section('menubar')
+    ユーザー検索
+@endsection
 @section('content')
+    <button onclick="location.href='/tweeter/index'">戻る</button>
     <form action="search" method="post">
         <label>ユーザー名</label>
         @csrf
