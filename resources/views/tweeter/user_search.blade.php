@@ -6,7 +6,7 @@
     ユーザー検索
 @endsection
 @section('content')
-    <button onclick="location.href='/tweeter/index'">戻る</button>
+    <button onclick="location.href='/tweeter'">戻る</button>
     <form action="search" method="post">
         <label>ユーザー名</label>
         @csrf
@@ -25,6 +25,7 @@
                 <tr>
                     <td>{{$item->name}}</td>
                     <td>
+{{--                        あってるかわからないので残しておく--}}
 {{--                        @if(isset($follows->followed_user_id))--}}
 {{--                            @foreach($follows as $follow)--}}
 {{--                            @if(!array_search($item->id,array_column($follows,'followed_user_id')))--}}
