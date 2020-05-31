@@ -31,7 +31,7 @@ class MypageController extends Controller
 //        }
         $items = User::all();
         $follows = Follow::where('follow_user_id',1)->get();
-        return view('user.follow_list', ['items' => $items, 'follows' => $follows]);
+        return view('user.follow_listwq', ['items' => $items, 'follows' => $follows]);
 
     }
 
