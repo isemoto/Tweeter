@@ -1,13 +1,15 @@
 @extends('layouts.tweeter')
 
-@section('title','tweeter')
+@section('title','Tweeter')
 
 @section('menubar')
-    menubarのtweeter
+    menubarのTweeter
 @endsection
 
 @section('content')
     <button onclick="location.href='/tweeter/tweet'">ツイートする</button>
+    <button onclick="location.href='/user/search'">ユーザー検索</button>
+    <button onclick="location.href='/user/mypage'">マイページ</button>
     @isset($tweets)
         <table>
             @foreach($tweets as $tweet)
