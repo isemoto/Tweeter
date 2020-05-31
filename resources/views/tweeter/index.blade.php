@@ -19,6 +19,9 @@
                             {{$tweet->message}}
                         </a>
                     </td>
+                    <td>
+                      {{$tweet->created_at}}
+                    </td>
                 </tr>
             @endforeach
         </table>
