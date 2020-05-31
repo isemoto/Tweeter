@@ -29,6 +29,11 @@
                         {{$user->name}}
                     </td>
                     <td>
+                        @csrf
+                        @error('message')
+                        {{$message}}
+                        <br/>
+                        @enderror
                         <input type="text" name="message" size="50">
                         <input type="hidden" name="tweet_id" value="{{$tweet_id}}">
                         <input type="submit" value="reply">

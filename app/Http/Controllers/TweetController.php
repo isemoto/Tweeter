@@ -9,6 +9,8 @@ use App\Tweet;
 use App\Follow;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\TweetRequest;
+
 class TweetController extends Controller
 {
     public function index(Request $request)
@@ -40,7 +42,7 @@ class TweetController extends Controller
         return view('tweeter.tweet');
     }
 
-    public function create(Request $request)
+    public function create(TweetRequest $request)
     {
         $Tweet = new Tweet;
         $Tweet->message = $request->message;
