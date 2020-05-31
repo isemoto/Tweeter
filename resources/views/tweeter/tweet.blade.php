@@ -3,15 +3,15 @@
 @section('title','Tweeter')
 
 @section('menubar')
-    menubarのTweeter
+    <button onclick="location.href='/tweeter'">戻る</button>
 @endsection
 
 @section('content')
+    <br/>
     <form action="/tweeter/tweet" method="post">
         @csrf
-        <textarea name="message" rows="5" cols="100"></textarea>
-        <br />
-        <input type="submit" value="ツイートする">
+        <input type="text" name="message" size="100">
+        <input type="submit" value="tweet">
 
     </form>
 @endsection
