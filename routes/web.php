@@ -33,6 +33,7 @@ Route::post('/tweeter/reply', 'ReplyController@create');
 Route::get('/user/search', 'UserController@index');
 Route::post('/user/search', 'UserController@search');
 Route::post('/user/create', 'UserController@create');
+Route::post('/user/delete','UserController@delete');
 
 Route::get('/user/mypage', 'MypageController@index');
 Route::get('/user/follow_list', 'MypageController@search');
