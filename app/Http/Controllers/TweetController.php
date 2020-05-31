@@ -27,14 +27,8 @@ class TweetController extends Controller
             ->latest()
             ->get();
 
-//        $users = User::whereIn('user_id', $followed_user_id)
-//            ->get();
-
         return view('tweeter.index', [
-//            'user' => $user,
-//            'follows' => $followings,
             'tweets' => $tweets,
-//            'users' => $users,
         ]);
 
     }
