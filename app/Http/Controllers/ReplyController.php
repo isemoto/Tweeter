@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TweetRequest;
 use Illuminate\Http\Request;
 
 use App\Tweet;
@@ -29,7 +30,7 @@ class ReplyController extends Controller
 
     }
 
-    public function create(Request $request)
+    public function create(TweetRequest $request)
     {
         $Tweet = new Tweet;
         $Tweet->message = $request->message;

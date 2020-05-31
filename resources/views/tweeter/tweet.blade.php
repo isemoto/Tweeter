@@ -10,9 +10,12 @@
     <br/>
     <form action="/tweeter/tweet" method="post">
         @csrf
-        <input type="text" name="message" size="100">
+        @error('message')
+        {{$message}}
+        <br/>
+        @enderror
+        <input type="text" name="message"  placeholder="いまどうしてる？" size="100">
         <input type="submit" value="tweet">
-
     </form>
 @endsection
 
