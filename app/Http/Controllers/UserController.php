@@ -24,8 +24,7 @@ class UserController extends Controller
                 }
             }
         }
-        //followsは消す
-        return view('tweeter.user_search', ['items' => $items, 'follows' => $follows]);
+        return view('tweeter.user_search', ['items' => $items]);
     }
 
     public function search(Request $request)
