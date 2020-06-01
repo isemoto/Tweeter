@@ -13,6 +13,18 @@ class UserController extends Controller
         //最初の表示
         $items = User::all();
         $follows = Follow::where('follow_user_id',Auth::id())->get();
+        foreach($items as $item)
+        {
+            $item->is_follow = 0;
+            foreach($follows as $follow)
+            {
+                if($item->id == $follow->followed_user_id)
+                {
+                    $item->is_follow = 1;
+                }
+            }
+        }
+        //followsは消す
         return view('tweeter.user_search', ['items' => $items, 'follows' => $follows]);
     }
 

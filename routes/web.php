@@ -14,12 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('lg'));
+});
+
+Route::get('/home', function () {
+    return redirect(route('lg'));
 });
 
 Auth::routes();
 
-Route::get('/tweeter/auth', 'AuthController@getAuth');
+Route::get('/tweeter/auth', 'AuthController@getAuth')->name('lg');
 Route::post('/tweeter/auth', 'AuthController@postAuth');
 
 Route::get('/tweeter', 'TweetController@index');
