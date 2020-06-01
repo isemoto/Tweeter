@@ -1,12 +1,12 @@
 @extends('layouts.tweeter')
 
-@section('title','tweeter')
+@section('title','Tweeter')
 
 @section('menubar')
-    ユーザー検索
+    <br/>
+    <button onclick="location.href='/tweeter'">戻る</button>
 @endsection
 @section('content')
-    <button onclick="location.href='/tweeter'">戻る</button>
     <form action="search" method="post">
         <label>ユーザー名</label>
         @csrf

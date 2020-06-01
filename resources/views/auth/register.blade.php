@@ -1,5 +1,12 @@
 @extends('layouts.tweeter')
 
+@section('title', 'Tweeter')
+
+@section('menubar')
+
+@endsection
+
+
 @section('content')
     <div class="container">
         <div class="col-md-8">
@@ -64,6 +71,16 @@
                     </div>
                 </div>
             </form>
+            <br/>
+            <div class="form-group row mb-0">
+                <div class="col-md-6 offset-md-4">
+                   <button class="btn btn-primary" onclick="location.href='/tweeter/auth'">戻る</button>
+                </div>
+            </div>
         </div>
     </div>
+@endsection
+
+@section('footer')
+    copyright 2020 group b.
 @endsection

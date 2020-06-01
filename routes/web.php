@@ -40,8 +40,8 @@ Route::post('/user/create', 'UserController@create');
 Route::post('/user/delete','UserController@delete');
 
 Route::get('/user/mypage', 'MypageController@index');
+Route::post('/user/mypage/delete', 'MypageController@delete_tweet');
 Route::get('/user/follow_list', 'MypageController@search');
-Route::post('/user/follow_list', 'MypageController@delete_tweet');
 Route::post('/user/follow_list/delete', 'MypageController@delete_follow');
 Route::post('/user/follow_list/create', 'MypageController@create_follow');
 

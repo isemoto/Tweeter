@@ -3,7 +3,6 @@
 @section('title','Tweeter')
 
 @section('menubar')
-    {{$user->name}}のTweeter
     <br/>
     <button onclick="location.href='/tweeter/tweet'">ツイートする</button>
     <button onclick="location.href='/user/search'">ユーザー検索</button>

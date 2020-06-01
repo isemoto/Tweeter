@@ -3,6 +3,7 @@
 @section('title','Tweeter')
 
 @section('menubar')
+    <br/>
     <button onclick="location.href='/tweeter'">戻る</button>
 @endsection
 
