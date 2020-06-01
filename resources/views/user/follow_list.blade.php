@@ -5,36 +5,63 @@
 {{--users他人　--}}
 @section('content')
 
-{{--    @if ($is_follow)--}}
-{{--    <h2>フォローリスト</h2>--}}
+    @if (true)
+    <h2>フォローリスト</h2>
+    <table>
+        @if (isset($users))
+        @foreach($users as $user)
+                <tr>
+                    <td>{{$user->name}}</td>
+                    <td>
+                        <form action="delete_follow" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$user->id}}">
+                            <input type="submit" name="remove" value="フォロー解除">
+                        </form>
+                    </td>
+                </tr>
+        @endforeach
+    </table>
+        @endif
+    <br>
+    <a href="mypage">戻る</a>
+    <br>
+    @else
 
-{{--    <ul>--}}
-{{--        @foreach($users as $tweet)--}}
-{{--            <li>--}}
-{{--                <div>{{$tweet->message}}</div>--}}
-{{--            </li>--}}
-{{--        @endforeach--}}
-{{--    </ul>--}}
+        <h2>フォロワーリスト</h2>
+                @if (isset($users))
+                    <table>
+                    @foreach($users as $user)
+                    <tr>
+                        <td>{{$user->name}}</td>
+                        @if ($user->followed_id==\Illuminate\Support\Facades\Auth::id())
+                            <td>
+                                <form action="delete_follow" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$user->id}}">
+                                    <input type="submit" name="remove" value="フォロー解除">
+                                </form>
+                            </td>
+                        @else
+                            <td>
+                                <form action="create_follow" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$user->id}}">
+                                    <input type="submit" name="add" value="フォローする">
+                                </form>
+                            </td>
+                        @endif
 
-{{--    <br>--}}
-{{--    <a href="/login">ログアウト</a>--}}
-{{--    <br>--}}
-{{--    <br>--}}
-{{--    <a href="user/user_search">フォロー</a>--}}
-{{--    <br>--}}
-{{--    <br>--}}
-{{--    <a href="user/user_search">フォロワー</a>--}}
-{{--    <br>--}}
-{{--    @else--}}
-{{--    @endif--}}
-<h2>フォローリスト</h2>
-<ul>
-            @foreach($follows as $follow)
-                <li>
-                    <div>{{$follow}}</div>
-                </li>
-            @endforeach
-        </ul>
+
+                    </tr>
+                    @endforeach
+                    </table>
+                @endif
+        <br>
+        <a href="mypage">戻る</a>
+        <br>
+    @endif
+
 
 
 @endsection
