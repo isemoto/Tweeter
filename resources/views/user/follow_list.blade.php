@@ -1,9 +1,8 @@
 @extends('layouts.tweeter')
 
-{{--@section('title','マイページ')--}}
-{{--user がじぶん--}}
+@section('title','マイページ')
 @section('menubar')
-    <button onclick="location.href='/tweeter' ">戻る</button>
+
 @endsection
 
 {{--users他人　--}}
