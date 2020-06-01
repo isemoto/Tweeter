@@ -47,10 +47,12 @@ class MypageController extends Controller
             }
             $users = User::whereIn('id', $show_user_id)->get();
 
+
+            $fols = Follow::where('follow_user_id', Auth::id())->get();
             foreach ($users as $user) {
                 $user->is_follow = 0;
-                foreach ($follows as $follow) {
-                    if ($user->id == $follow->follow_user_id) {
+                foreach ($fols as $follow) {
+                    if ($user->id == $follow->followed_user_id) {
                         $user->is_follow = 1;
                     }
                 }
