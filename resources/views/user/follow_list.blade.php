@@ -1,7 +1,10 @@
 @extends('layouts.tweeter')
 
-{{--@section('title','マイページ')--}}
-{{--user がじぶん--}}
+@section('title','マイページ')
+@section('menubar')
+
+@endsection
+
 {{--users他人　--}}
 @section('content')
 
