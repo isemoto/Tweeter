@@ -14,11 +14,6 @@
         <input type="submit" value="検索">
     </form>
 
-{{--    test--}}
-    @if(isset($follows))
-        {{$follows}}
-    @endif
-
     @if(isset($items))
         <table>
             @foreach($items as $item)
