@@ -84,7 +84,7 @@ class MypageController extends Controller
         Follow::where('follow_user_id', Auth::id())
             ->where('followed_user_id', $request->id)
             ->delete();
-        return redirect('/user/follow_list');
+        return redirect('/user/follow_list?type=');
     }
 //フォローする
     public function create_follow(Request $request)

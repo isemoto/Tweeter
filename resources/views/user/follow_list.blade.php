@@ -20,15 +20,18 @@
                     <td>{{$user->name}}</td>
                     <td>
                         @if ($user->is_follow)
-                            <form action="delete_follow" method="post">
+                            <form action="/user/follow_list/delete_follow" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$user->id}}">
+                                <input type="hidden" name="type" value="{{$is_follow}}">
                                 <input type="submit" name="remove" value="フォロー解除">
+
                             </form>
                         @else
-                            <form action="create_follow" method="post">
+                            <form action="/user/follow_list/create_follow" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$user->id}}">
+                                <input type="hidden" name="type" value="{{$is_follow}}">
                                 <input type="submit" name="add" value="フォローする">
                             </form>
                         @endif
