@@ -81,5 +81,5 @@
 @endsection
 
 @section('footer')
-    copyright 2020 groupB.
+    copyright 2020 group b .
 @endsection

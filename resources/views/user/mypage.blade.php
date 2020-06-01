@@ -1,33 +1,37 @@
 @extends('layouts.tweeter')
 
 
-@section('title','マイページ')
+@section('title','Mypage')
 @section('menubar')
+    <br/>
+    {{$user->name}}
+    <br/>
     <button onclick="location.href='/tweeter' ">戻る</button>
+    <button onclick="location.href='/user/follow_list?type=follow' ">フォロー</button>
+    <button onclick="location.href='/user/follow_list?type=follower'">フォロワー</button>
 @endsection
-{{--user がじぶん--}}
-{{--users他人　--}}
+
+
 @section('content')
-
-
-        <h2>{{$user->name}}のツイート </h2>
-
-
+    @isset($tweets)
+        <table>
             @foreach($tweets as $tweet)
-               <p>
-                    <div>{{$tweet->message}}</div>
-                </p>
+                <tr>
+                    <td>{{$tweet->message}}</td>
+                    <td>
+                        <form action="/user/mypage/delete" method="post">
+                            @csrf
+                            <input type="hidden" name="tweet_id" value="{{$tweet->tweet_id}}">
+                            <input type="submit" name="remove" value="ツイート削除">
+                        </form>
+                    </td>
+                    <td>{{$tweet->created_at}}</td>
+                </tr>
             @endforeach
-
-
-        <br>
-        <button onclick="location.href='/user/follow_list?type=follow' ">フォロー</button>
-        <br>
-        <br>
-        <button onclick="location.href='/user/follow_list?type=follower'">フォロワー</button>
-        <br>
+        </table>
+    @endisset
 @endsection
 
 @section('footer')
-    copyright 2020 groupB.
+    copyright 2020 group b.
 @endsection

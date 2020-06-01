@@ -26,7 +26,7 @@
             top: 0px;
         }
         body{font-size:16pt; color:#999; margin: 5px;}
-        h1{font-size:50pt; text-align:right; color:#f6f6f6;
+        h1{font-size:50pt; text-align:left; color:#666666;
             margin:-20px 0px -30px 0px;  letter-spacing: -4pt;}
         ul{ font-size:12pt;}
         hr { margin: 25px 100px; border-top:1px dashed #ddd;}
@@ -45,7 +45,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-
+                    <li><h1>@yield('title')</h1></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -79,10 +79,7 @@
     </nav>
 </div>
 </header>
-
-<h1>@yield('title')</h1>
 @section('menubar')
-    <h2 class="menutitle">*メニュー</h2>
     <ul>
         <li>@show</li>
     </ul>

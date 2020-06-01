@@ -13,70 +13,60 @@ class MypageController extends Controller
 {
     public function index(Request $request)
     {
-        $tweets = Tweet::where('user_id',Auth::id())->get();
+        $tweets = Tweet::where('user_id', Auth::id())->get();
         $user = Auth::user();
-        return view('user.mypage',['tweets' => $tweets , 'user' => $user ]);
+        return view('user.mypage', ['tweets' => $tweets, 'user' => $user]);
     }
 
     public function search(Request $request)
     {
         //if フォローの時
-        if ($request->type=='follow') {
-           $follows = Follow::where('followed_user_id',Auth::id())->get();
+        if ($request->type == 'follow') {
+            $follows = Follow::where('follow_user_id', Auth::id())->get();
             $show_user_id = [];
-            foreach ($follows as $follow)
-            {
-                array_push($show_user_id, $follow->follow_user_id);
-            }
-           $users = User::whereIn('id',$show_user_id)->get();
-
-            foreach($users as $item)
-            {
-                $item->is_follow = 0;
-                foreach($follows as $follow)
-                {
-                    if($item->id == $follow->followed_user_id)
-                    {
-                        $item->is_follow = 1;
-                    }
-                }
-            }
-           return view('user.follow_list',['users'=>$users,'type'=>'follow']);
-        }else//フォロワーの時
-        {
-//          $follows_id = Follow::where('follow_user_id',Auth::id())->get(['followed_user_id']);
-//          $users = User::whereIn('id',$follows_id)->get();
-//          return view('user.follow_list',['follows'=>$follows_id,'users'=>$users,'is_follow'=>false]);
-            $follows = Follow::where('follow_user_id',Auth::id())->get();
-            $show_user_id = [];
-            foreach ($follows as $follow)
-            {
+            foreach ($follows as $follow) {
                 array_push($show_user_id, $follow->followed_user_id);
             }
-            $users = User::whereIn('id',$show_user_id)->get();
-            foreach($users as $item)
-            {
-                $item->is_follow = 0;
-                foreach($follows as $follow)
-                {
-                    if($item->id == $follow->followed_user_id)
-                    {
-                        $item->is_follow = 1;
+            $users = User::whereIn('id', $show_user_id)->get();
+
+            foreach ($users as $user) {
+                $user->is_follow = 0;
+                foreach ($follows as $follow) {
+                    if ($user->id == $follow->followed_user_id) {
+                        $user->is_follow = 1;
                     }
                 }
             }
-            return view('user.follow_list', ['users' => $users,'type'=>'followed']);
+            return view('user.follow_list', ['users' => $users, 'type' => 'follow']);
+        } else//フォロワーの時
+        {
+            $follows = Follow::where('followed_user_id', Auth::id())->get();
+            $show_user_id = [];
+            foreach ($follows as $follow) {
+                array_push($show_user_id, $follow->follow_user_id);
+            }
+            $users = User::whereIn('id', $show_user_id)->get();
+
+            foreach ($users as $user) {
+                $user->is_follow = 0;
+                foreach ($follows as $follow) {
+                    if ($user->id == $follow->follow_user_id) {
+                        $user->is_follow = 1;
+                    }
+                }
+            }
+            return view('user.follow_list', ['users' => $users, 'type' => 'follower']);
         }
 
     }
 
     public function delete_tweet(Request $request)
     {
-        Tweet::where('tweet_id',$request->id)->delete();
+        Tweet::where('tweet_id', $request->tweet_id)->delete();
         return redirect('/user/mypage');
     }
-// フォロー解除
-    public function delete_follow(Request  $request)
+
+    public function delete_follow(Request $request)
     {
         Follow::where('follow_user_id', Auth::id())
             ->where('followed_user_id', $request->id)
@@ -84,6 +74,7 @@ class MypageController extends Controller
         return redirect('/user/follow_list?type=' . $request->type);
 
     }
+
 //フォローする
     public function create_follow(Request $request)
     {
