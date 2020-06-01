@@ -16,6 +16,7 @@ class TweetController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+
         $followings = Follow::following($user->id)->get();
 
         $show_user_id = [];
