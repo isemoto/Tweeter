@@ -1,6 +1,10 @@
 @extends('layouts.tweeter')
 
+
 @section('title','マイページ')
+@section('menubar')
+    <button onclick="location.href='/tweeter' ">戻る</button>
+@endsection
 {{--user がじぶん--}}
 {{--users他人　--}}
 @section('content')
@@ -16,9 +20,6 @@
             @endforeach
 
 
-    <br>
-    <a href="/login">ログアウト</a>
-    <br>
         <br>
         <button onclick="location.href='/user/follow_list?type=follow' ">フォロー</button>
         <br>
