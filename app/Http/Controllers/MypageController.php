@@ -11,16 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class MypageController extends Controller
 {
-    //
-
     public function index(Request $request)
     {
         $tweets = Tweet::where('user_id',Auth::id())->get();
-//        $tweets = Tweet::all();
         $user = Auth::user();
         return view('user.mypage',['tweets' => $tweets , 'user' => $user ]);
     }
-//フォローor フォロワー　表示
+
     public function search(Request $request)
     {
         //if フォローの時
@@ -44,7 +41,7 @@ class MypageController extends Controller
                     }
                 }
             }
-           return view('user.follow_list',['users'=>$users,'is_follow'=>true]);
+           return view('user.follow_list',['users'=>$users,'type'=>'follow']);
         }else//フォロワーの時
         {
 //          $follows_id = Follow::where('follow_user_id',Auth::id())->get(['followed_user_id']);
@@ -68,7 +65,7 @@ class MypageController extends Controller
                     }
                 }
             }
-            return view('user.follow_list', ['users' => $users,'is_follow'=>false]);
+            return view('user.follow_list', ['users' => $users,'type'=>'followed']);
         }
 
     }
@@ -84,7 +81,7 @@ class MypageController extends Controller
         Follow::where('follow_user_id', Auth::id())
             ->where('followed_user_id', $request->id)
             ->delete();
-        return redirect('/user/follow_list');
+        return redirect('/user/follow_list?type=' . $request->type);
     }
 //フォローする
     public function create_follow(Request $request)
@@ -94,7 +91,6 @@ class MypageController extends Controller
         $users->followed_user_id = $request->id;
         $users->timestamps;
         $users->save();
-        return redirect('/user/follow_list');
+        return redirect('/user/follow_list?type=' . $request->type);
     }
-
 }
