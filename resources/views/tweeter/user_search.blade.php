@@ -16,7 +16,7 @@
 
     @if(isset($follows))
         {{$follows}}
-        @endif
+    @endif
 
     @if(isset($items))
         <table>
@@ -80,6 +80,7 @@
             @endforeach
         </table>
     @endif
+@endsection
 
 @section('footer')
     copyright 2020 group b.
