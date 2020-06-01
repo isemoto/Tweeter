@@ -17,21 +17,58 @@ class MypageController extends Controller
     {
         $tweets = Tweet::where('user_id',Auth::id())->get();
 //        $tweets = Tweet::all();
-        return view('user.mypage',['tweets' => $tweets]);
+        $user = Auth::user();
+        return view('user.mypage',['tweets' => $tweets , 'user' => $user ]);
     }
 //フォローor フォロワー　表示
     public function search(Request $request)
     {
         //if フォローの時
-        if (0) {
-           $follows = Follow::where('followed_user_id',Auth::id());
-           $users = User::where('id',$follows->follow_user_id);
-           return view('user.follow_list',['follows'=>$follows,'users'=>$users,'is_follow'=>true]);
+        if ($request->type=='follow') {
+           $follows = Follow::where('followed_user_id',Auth::id())->get();
+            $show_user_id = [];
+            foreach ($follows as $follow)
+            {
+                array_push($show_user_id, $follow->follow_user_id);
+            }
+           $users = User::whereIn('id',$show_user_id)->get();
+
+            foreach($users as $item)
+            {
+                $item->is_follow = 0;
+                foreach($follows as $follow)
+                {
+                    if($item->id == $follow->followed_user_id)
+                    {
+                        $item->is_follow = 1;
+                    }
+                }
+            }
+           return view('user.follow_list',['users'=>$users,'is_follow'=>true]);
         }else//フォロワーの時
         {
-          $follows_id = Follow::where('follow_user_id',Auth::id())->get(['followed_user_id']);
-          $users = User::whereIn('id',$follows_id)->get();
-          return view('user.follow_list',['follows'=>$follows_id,'users'=>$users,'is_follow'=>false]);
+//          $follows_id = Follow::where('follow_user_id',Auth::id())->get(['followed_user_id']);
+//          $users = User::whereIn('id',$follows_id)->get();
+//          return view('user.follow_list',['follows'=>$follows_id,'users'=>$users,'is_follow'=>false]);
+            $follows = Follow::where('follow_user_id',Auth::id())->get();
+            $show_user_id = [];
+            foreach ($follows as $follow)
+            {
+                array_push($show_user_id, $follow->followed_user_id);
+            }
+            $users = User::whereIn('id',$show_user_id)->get();
+            foreach($users as $item)
+            {
+                $item->is_follow = 0;
+                foreach($follows as $follow)
+                {
+                    if($item->id == $follow->followed_user_id)
+                    {
+                        $item->is_follow = 1;
+                    }
+                }
+            }
+            return view('user.follow_list', ['users' => $users,'is_follow'=>false]);
         }
 
     }
