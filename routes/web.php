@@ -42,8 +42,9 @@ Route::post('/user/delete','UserController@delete');
 Route::get('/user/mypage', 'MypageController@index');
 Route::get('/user/follow_list', 'MypageController@search');
 Route::post('/user/follow_list', 'MypageController@delete_tweet');
-Route::post('/user/follow_list/delete_follow', 'MypageController@delete_follow');
-Route::post('/user/follow_list/create_follow', 'MypageController@create_follow');
+Route::post('/user/follow_list/delete', 'MypageController@delete_follow');
+Route::post('/user/follow_list/create', 'MypageController@create_follow');
+
 
 
 //Route::get('/user/follower_list', 'HomeController@search_follower');

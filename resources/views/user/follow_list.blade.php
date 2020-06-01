@@ -8,7 +8,7 @@
 {{--users他人　--}}
 @section('content')
 
-    @if ($is_follow)
+    @if ($type == 'follow')
         <h2>フォローリスト</h2>
     @else
         <h2>フォロワーリスト</h2>
@@ -20,18 +20,19 @@
                     <td>{{$user->name}}</td>
                     <td>
                         @if ($user->is_follow)
-                            <form action="/user/follow_list/delete_follow" method="post">
+                            <form action="/user/follow_list/delete" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$user->id}}">
-                                <input type="hidden" name="type" value="{{$is_follow}}">
+                                <input type="hidden" name="type" value={{$type}}>
+
                                 <input type="submit" name="remove" value="フォロー解除">
 
                             </form>
                         @else
-                            <form action="/user/follow_list/create_follow" method="post">
+                            <form action="/user/follow_list/create" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$user->id}}">
-                                <input type="hidden" name="type" value="{{$is_follow}}">
+                                <input type="hidden" name="type" value={{$type}}>
                                 <input type="submit" name="add" value="フォローする">
                             </form>
                         @endif
