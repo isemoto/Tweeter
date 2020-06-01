@@ -2,6 +2,10 @@
 
 {{--@section('title','マイページ')--}}
 {{--user がじぶん--}}
+@section('menubar')
+    <button onclick="location.href='/tweeter' ">戻る</button>
+@endsection
+
 {{--users他人　--}}
 @section('content')
 
