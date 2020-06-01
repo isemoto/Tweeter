@@ -46,6 +46,7 @@ Route::post('/user/follow_list/delete', 'MypageController@delete_follow');
 Route::post('/user/follow_list/create', 'MypageController@create_follow');
 
 
+
 //Route::get('/user/follower_list', 'HomeController@search_follower');
 //Route::post('/user/follower_list', 'HomeController@delete_follower');
 

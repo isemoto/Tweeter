@@ -82,6 +82,7 @@ class MypageController extends Controller
             ->where('followed_user_id', $request->id)
             ->delete();
         return redirect('/user/follow_list?type=' . $request->type);
+
     }
 //フォローする
     public function create_follow(Request $request)

@@ -24,7 +24,9 @@
                                 @csrf
                                 <input type="hidden" name="id" value="{{$user->id}}">
                                 <input type="hidden" name="type" value={{$type}}>
+
                                 <input type="submit" name="remove" value="フォロー解除">
+
                             </form>
                         @else
                             <form action="/user/follow_list/create" method="post">
