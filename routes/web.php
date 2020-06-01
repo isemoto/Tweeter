@@ -41,6 +41,7 @@ Route::post('/user/delete','UserController@delete');
 
 Route::get('/user/mypage', 'MypageController@index');
 Route::get('/user/follow_list', 'MypageController@search');
+Route::post('/user/follow_list', 'MypageController@delete_tweet');
 Route::post('/user/follow_list', 'MypageController@delete_follow');
 Route::post('/user/follow_list', 'MypageController@create_follow');
 
