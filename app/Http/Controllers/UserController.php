@@ -32,7 +32,18 @@ class UserController extends Controller
         //ユーザー検索
         $items = User::where('name','like','%' .  $request->input . '%')->get();
         $follows = Follow::where('follow_user_id',Auth::id())->get();
-        return view('tweeter.user_search', ['items' => $items, 'follows' => $follows]);
+        foreach($items as $item)
+        {
+            $item->is_follow = 0;
+            foreach($follows as $follow)
+            {
+                if($item->id == $follow->followed_user_id)
+                {
+                    $item->is_follow = 1;
+                }
+            }
+        }
+        return view('tweeter.user_search', ['items' => $items]);
     }
 
     public function create(Request $request)
