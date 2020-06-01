@@ -34,7 +34,7 @@
                         {{$message}}
                         <br/>
                         @enderror
-                        <input type="text" name="message" size="50">
+                        <input type="text" name="message">
                         <input type="hidden" name="tweet_id" value="{{$tweet_id}}">
                         <input type="submit" value="reply">
                     </td>

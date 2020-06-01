@@ -14,7 +14,7 @@
         {{$message}}
         <br/>
         @enderror
-        <input type="text" name="message"  placeholder="いまどうしてる？" size="100">
+        <input type="text" name="message"  placeholder="いまどうしてる？">
         <input type="submit" value="tweet">
     </form>
 @endsection
